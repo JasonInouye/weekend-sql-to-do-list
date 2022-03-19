@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>./vendors/</script>
+    <script src="./vendors/jQuery.js"></script>
+    <script src="./scripts/client.js"></script>
     <title>To-Do-List</title>
 </head>
-<body>
+<body class="container">
+    <div class="submit">
+        <input type="text" placeholder="Task">
+        <input type="text" placeholder="Description">
+        <input type="date" placeholder="">
+        <button>Submit</button>
+        <!-- <select id="completedFlag">
+            <option value='' disabled="disabled" selected>--Complete Task--</option>
+            <option value='true'>Completed</option>
+            <option value='false'>Incomplete</option>
+          </select> -->
+    </div>
     <h1>To-Do-List</h1>
+    <div class="taskList">
+        <table>
+            <thead>
+              <tr>
+                <th>Task/Description</th>
+                <th>Date</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody id="viewTasks">
+            </tbody>
+          </table>
+    </div>  
 </body>
 </html>
