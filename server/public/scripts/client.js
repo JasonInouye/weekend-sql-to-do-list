@@ -7,6 +7,7 @@ $( document ).ready(function(){
         handleNewTask();
     });
     getTasks();
+    //$('#completedBtn').on('click', completedTask());
 });
 
 // let m = moment();
@@ -55,11 +56,19 @@ function renderTasks(tasks){
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
 
+        if(task.completed === true ){
+            compStatus = 'Completed';
+        } else if(task.completed === false ){
+            compStatus = 'Incomplete'
+        }
+
         let row = $(`
             <tr data-id=${task.id}>
                 <td id="taskDisplay">${task.task}</td>
                 <td>${task.due_date}</td>
                 <td>${task.priority}</td>
+                <td>${compStatus}</td>
+                <td><button class="completedBtn">Completed</button></td>
                 <td><button class="deleteBtn" >Remove task</button></td>
             </tr>
             <tr>
@@ -71,3 +80,26 @@ function renderTasks(tasks){
         console.log(row.data('task'));    
     };
 }
+
+// function completedTask() {
+//     console.log('clicked');
+   
+//     let id = $(this).closest('tr').data('id');
+    
+//     console.log(id);
+  
+//       $.ajax({
+//           url: `/tasks/${id}`,//just like delete!
+//           method: 'PUT',
+//           data: {id: id}//just like POST!
+//       }).then(function (response) {
+//           console.log('updated!');
+//           getTasks();//so DOM updates after delete (ie new render)!
+  
+//       }).catch(function (err) {
+//           console.log(err);
+  
+//       })
+//   }
+
+  
