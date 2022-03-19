@@ -27,11 +27,13 @@ function renderTasks(tasks){
         let task = tasks[i];
         let row = $(`
             <tr data-id=${task.id}>
-                <td>${task.task}</td>
-                <td>${task.description}</td>
-                <td>${task.date}</td>
+                <td id="taskDisplay">${task.task}</td>
+                <td>${task.due_date}</td>
                 <td>${task.priority}</td>
                 <td><button class="deleteBtn" >Remove task</button></td>
+            </tr>
+            <tr>
+                <td>${task.description}</td>
             </tr>
         `);
         row.data('task', task)
