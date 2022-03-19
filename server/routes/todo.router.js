@@ -28,6 +28,8 @@ todoRouter.get('/', (req,res) => {
 
     // console.log( res.rows );
     pool.query(queryText).then(result => {
+        //FOR loop here?
+        //
         res.send(result.rows);
     })
     .catch(error => {

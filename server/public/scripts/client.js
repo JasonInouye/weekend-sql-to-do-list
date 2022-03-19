@@ -67,20 +67,37 @@ function renderTasks(tasks){
 
 // Add priority during stretch
 // <td>${task.priority}</td>
-        let row = $(`
-            <tr data-id=${task.id}>
-                <td id="taskDisplay">${task.task}</td>
-                <td>${task.due_date}</td>
-                <td>${compStatus}</td>
-                <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
-                <td><button class="deleteBtn" >Remove task</button></td>
-            </tr>
-            <tr>
-                <td>${task.description}</td>
-            </tr>
-        `);
-        row.data('task', task)
-        $('#viewTasks').append(row);
+        if( task.completed === false ){
+            let row = $(`
+                <tr data-id=${task.id}>
+                    <td id="taskDisplay">${task.task}</td>
+                    <td>${task.due_date}</td>
+                    <td>${compStatus}</td>
+                    <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
+                    <td><button class="deleteBtn" >Remove task</button></td>
+                </tr>
+                <tr>
+                    <td>${task.description}</td>
+                </tr>
+            `);
+            row.data('task', task)
+            $('#viewTasks').append(row);
+        } else if ( task.completed === true ) {
+            let row = $(`
+                <tr data-id=${task.id} class="gray">
+                    <td id="taskDisplay">${task.task}</td>
+                    <td>${task.due_date}</td>
+                    <td>${compStatus}</td>
+                    <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
+                    <td><button class="deleteBtn" >Remove task</button></td>
+                </tr>
+                <tr>
+                    <td>${task.description}</td>
+                </tr>
+            `);
+            row.data('task', task)
+            $('#viewTasks').append(row);
+        }
         //console.log(row.data('task'));    
     };
 }

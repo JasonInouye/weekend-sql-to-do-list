@@ -1,3 +1,7 @@
 #taskDisplay{
     font-weight: bold;
 }
+
+.gray {
+    background-color: gray;
+}
