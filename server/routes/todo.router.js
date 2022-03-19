@@ -36,26 +36,26 @@ todoRouter.get('/', (req,res) => {
     });
 });
 
-// todoRouter.put('/:id', (req, res) => {
-//     let id = req.params.id;
-//     console.log(req.body, id);
-//     // res.sendStatus(200);
+todoRouter.put('/:id', (req, res) => {
+    let id = req.params.id;
+    console.log('inside put router', req.body, id);
+    // res.sendStatus(200);
 
-//     queryText = `
-//         UPDATE "tasks"
-//         SET "completed" = true
-//         WHERE "id" = $1;`;
+    const queryText = `
+        UPDATE "tasks"
+        SET "completed" = NOT "completed"
+        WHERE "id" = $1;`;
 
-//     const values = [id];
+    const values = [ req.body.id ];
 
-//     pool.query(queryText, values)
-//         .then(result => {
-//             res.sendStatus(200);
-//         }).catch(err => {
-//             console.log(err)
-//             res.sendStatus(500);
-//         })
-// });
+    pool.query(queryText, values)
+        .then(result => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log(err)
+            res.sendStatus(500);
+        })
+});
 
 
 module.exports=todoRouter;
