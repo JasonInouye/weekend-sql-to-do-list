@@ -24,13 +24,34 @@ todoRouter.post('/', ( req,res ) => {
 
 todoRouter.get('/', (req,res) => {
     
-    let queryText = 'SELECT * FROM "tasks" ORDER BY "priority";';
+    let queryText = 'SELECT * FROM "tasks" ORDER BY "completed", "priority";';
 
-    // console.log( res.rows );
+    
     pool.query(queryText).then(result => {
-        //FOR loop here?
-        //
-        res.send(result.rows);
+        //FOR loop here for Moment
+        let newRows = [];
+        for (const row of result.rows) {
+            let newRow = {
+                id: row.id,
+                task: row.task,
+                priority: row.priority,
+                due_date: moment(row.due_date).format('MMM-DD'),
+                completed_date: moment(row.completed_date).format('MMM-DD'),
+                completed: row.completed,
+                description: row.description
+            }
+            newRows.push(newRow);
+            // console.log('inside for', newRows);
+            // console.log( 'inside for', result.id );
+            // console.log( 'inside for', result.rows.id );
+        }
+        //console.log( 'does this work?', newRows );
+        res.send(newRows);
+        // console.log( 'is this a different log?', result.rows );
+        // console.log( result.rows[3].due_date );
+        // console.log( moment().format('MMM-DD') );
+        
+        
     })
     .catch(error => {
         console.log( `error getting TASKS`, error);

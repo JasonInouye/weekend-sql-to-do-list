@@ -91,7 +91,7 @@ function renderTasks(tasks){
                     <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
                     <td><button class="deleteBtn" >Remove task</button></td>
                 </tr>
-                <tr>
+                <tr class="gray">
                     <td>${task.description}</td>
                 </tr>
             `);
