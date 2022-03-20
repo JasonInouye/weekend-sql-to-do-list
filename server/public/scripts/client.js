@@ -82,17 +82,29 @@ function renderTasks(tasks){
             `);
             row.data('task', task)
             $('#viewTasks').append(row);
-        } else if ( task.completed === true ) {
+        } else if ( task.completed === true && task.description !== ""  ) {
             let row = $(`
-                <tr data-id=${task.id} class="gray">
+                <tr data-id=${task.id} class="success">
                     <td id="taskDisplay">${task.task}</td>
                     <td>${task.due_date}</td>
                     <td>${compStatus}</td>
                     <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
                     <td><button class="deleteBtn" >Remove task</button></td>
                 </tr>
-                <tr class="gray">
+                <tr class="success">
                     <td>${task.description}</td>
+                </tr>
+            `);
+            row.data('task', task)
+            $('#viewTasks').append(row);
+        } else if ( task.completed === true && task.description === "" ){
+            let row = $(`
+                <tr data-id=${task.id} class="success">
+                    <td id="taskDisplay">${task.task}</td>
+                    <td>${task.due_date}</td>
+                    <td>${compStatus}</td>
+                    <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
+                    <td><button class="deleteBtn" >Remove task</button></td>
                 </tr>
             `);
             row.data('task', task)

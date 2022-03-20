@@ -24,7 +24,7 @@ todoRouter.post('/', ( req,res ) => {
 
 todoRouter.get('/', (req,res) => {
     
-    let queryText = 'SELECT * FROM "tasks" ORDER BY "completed", "priority";';
+    let queryText = 'SELECT * FROM "tasks" ORDER BY "completed", "due_date", "priority";';
 
     
     pool.query(queryText).then(result => {
