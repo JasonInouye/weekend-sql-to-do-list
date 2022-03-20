@@ -50,8 +50,6 @@ todoRouter.get('/', (req,res) => {
         // console.log( 'is this a different log?', result.rows );
         // console.log( result.rows[3].due_date );
         // console.log( moment().format('MMM-DD') );
-        
-        
     })
     .catch(error => {
         console.log( `error getting TASKS`, error);

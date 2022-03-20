@@ -2,6 +2,10 @@
     font-weight: bold;
 }
 
-.detail-btn{
+.detailBtn{
     margin-left: 15px;
+}
+
+.longDescription{
+    padding-left: 100px !important;
 }

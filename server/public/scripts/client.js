@@ -45,7 +45,6 @@ function getTasks(){
     }).then(function(response) {
         //console.log(response);
         renderTasks(response);
-        renderModalDescriptions(response);
     }).catch(function(error){
         console.log('error in GET', error);
     })
@@ -72,20 +71,49 @@ function renderTasks(tasks){
 /* <tr>
 <td>${task.description}</td>
 </tr> */
-        if( task.completed === false ){
+        if( task.completed === false && task.description !== ""){
             let row = $(`
                 <tr data-id=${task.id}>
-                    <td id="taskDisplay">${task.task}<button type="button" class="detail-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button></td>
+                    <td id="taskDisplay">${task.task}</td>
                     <td>${task.due_date}</td>
                     <td>${compStatus}</td>
                     <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
                     <td><button class="deleteBtn" >Remove task</button></td>
                 </tr>
-
+                <tr class="longDescription">
+                    <td>${task.description}</td>
+                </tr>
             `);
             row.data('task', task)
             $('#viewTasks').append(row);
-        } else if ( task.completed === true  ) {
+        } else if( task.completed === false && task.description === "" ){
+            let row = $(`
+                <tr data-id=${task.id}>
+                    <td id="taskDisplay">${task.task}</td>
+                    <td>${task.due_date}</td>
+                    <td>${compStatus}</td>
+                    <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
+                    <td><button class="deleteBtn" >Remove task</button></td>
+                </tr>
+            `);
+            row.data('task', task)
+            $('#viewTasks').append(row);
+        } else if ( task.completed === true && task.description !== ""  ) {
+            let row = $(`
+                <tr data-id=${task.id} class="bg-secondary bg-gradient">
+                    <td id="taskDisplay">${task.task}</td>
+                    <td>${task.due_date}</td>
+                    <td>${compStatus}</td>
+                    <td><button class="completedBtn" data-id=${task.id} data-completed=${task.completed}>Completed</button></td>
+                    <td><button class="deleteBtn" >Remove task</button></td>
+                </tr>
+                <tr class="bg-secondary bg-gradient bg-opacity-75 longDescription">
+                    <td>${task.description}</td>
+                </tr>
+            `);
+            row.data('task', task)
+            $('#viewTasks').append(row);
+        } else if ( task.completed === true && task.description === "" ){
             let row = $(`
                 <tr data-id=${task.id} class="bg-secondary bg-gradient">
                     <td id="taskDisplay">${task.task}</td>
@@ -97,38 +125,9 @@ function renderTasks(tasks){
             `);
             row.data('task', task)
             $('#viewTasks').append(row);
-        }  
-    };
-}
-
-function renderModalDescriptions(tasks){
-    console.log( 'inside of Modal');
-    for (let i = 0; i < tasks.length; i++) {
-        let task = tasks[i];
-
-        if ( task.description !== "" ){
-            let rowDesc = $(`
-            <div class="modal fade" id="${task.id}descModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">Task Details</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>${task.description}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `);
-           // row.data('task', task)
-            $('.descriptionData').append(rowDesc);
         }
-    }
-}
-
-function test(){
-    console.log( 'inside of test' );
+        //console.log(row.data('task'));    
+    };
 }
 
 function completedTask(){
@@ -162,5 +161,8 @@ function deleteTask(){
         console.log( err );
     });
 }
+
+  
+
 
   
