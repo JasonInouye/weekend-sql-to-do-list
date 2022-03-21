@@ -1,46 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./vendors/jQuery.js"></script>
-    <script src="./vendors/bootstrap.min.js"></script>
-    <script src="./scripts/client.js"></script>
-    <!-- <link rel="stylesheet" href="./styles/bootstrap.css"> -->
-    <link rel="stylesheet" href="./styles/bootstrap.min.css">
-    <link rel="stylesheet" href="./styles/style.css">
-    <title>To-Do-List</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vendors/jQuery.js"></script>
+  <script src="./vendors/bootstrap.min.js"></script>
+  <script src="./scripts/client.js"></script>
+  <!-- <link rel="stylesheet" href="./styles/bootstrap.css"> -->
+  <link rel="stylesheet" href="./styles/bootstrap.min.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <title>Just-DO-IT</title>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <h1>My-To-Do-List</h1>
-    </header>
-    <div class="submit">
+  <header class="head-container">
+    <article class="index-intro">
+      <div class="container">
+        <div class="jumbotron">
+          <div class="row">
+            <div class="col-sm-6">
+              <h1 class="display-2 fw-bolder">My-DO-IT-List</h1>
+            </div>
+            <div class="col-sm-6"></div>
+          </div>
+          <!-- <img src="https://upstatecommercialrealestate.com/wp-content/uploads/2020/04/calculator-header.jpg" class="img-fluid header-img" alt="calculator image"> -->
+        </div>
+      </div>
+    </article>
+  </header>
+  <div class="container submitContainer">
+    <div class="form">
+      <div class="form-group">
+        <label for="task" class="control-label">Task</label>
+        <input type="text" class="form-control" id="newTask" placeholder="Task">
+      </div>
+      <div class="form-group">
+        <label for="description" class="control-label">Task Details (Optional)</label>
+        <input type="text" class="form-control" id="newDescription" placeholder="Task Details">
+      </div>
+      <div class="form-group">
+        <label for="date" class="control-label">Due Date</label>
+        <input type="date" class="form-control" id="dueDate" placeholder="">
+      </div>
+      <button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
+    </div>
+
+    <!-- <div class="submit">
       <input id="newTask" type="text" placeholder="Task">
-      <input id="newDescription" type="text" placeholder="Description">
+      <input id="newDescription" class="inputDescription" type="text" placeholder="Description">
       <input id="dueDate" type="date" placeholder="">
       <button id="submitBtn">Submit</button>
-      <!-- <select id="completedFlag">
-          <option value='' disabled="disabled" selected>--Complete Task--</option>
-          <option value='true'>Completed</option>
-          <option value='false'>Incomplete</option>
-        </select> -->
+    </div> -->
+    <div class="taskList container-md">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Task/Description</th>
+            <th>Date</th>
+            <th>Completed</th>
+          </tr>
+        </thead>
+        <tbody id="viewTasks">
+        </tbody>
+      </table>
     </div>
-    <div class="taskList">
-        <table class="table">
-            <thead>
-              <tr>
-                <th>Task/Description</th>
-                <th>Date</th>
-                <th>Completed</th>
-              </tr>
-            </thead>
-            <tbody id="viewTasks">
-            </tbody>
-          </table>
-    </div>  
     <div class="descriptionData">
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -53,7 +78,28 @@
               ...
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- DELETE MODAL -->
+    <div class="deleteData">
+      <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
@@ -62,8 +108,8 @@
 
     </div>
 
-      <!-- Button trigger modal -->
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
       </button> -->
 
@@ -71,4 +117,5 @@
   </div>
 
 </body>
+
 </html>

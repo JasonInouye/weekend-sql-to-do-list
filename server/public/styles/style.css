@@ -9,3 +9,30 @@
 .longDescription{
     padding-left: 100px !important;
 }
+
+#submitBtn{
+    margin-top: 15px !important;
+}
+
+.index-intro .jumbotron{
+    padding: 15px 5px;
+    padding-bottom: 20%;
+    border-radius: 6px;
+    margin: 0px;
+    background-image: url('https://timemanagementninja.com/wp-content/uploads/2013/02/Todos-Non-negotiable.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.taskList{
+    margin-top: 25px;
+}
+
+.submitContainer{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.lateStatus{
+    color: red;
+}
